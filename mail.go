@@ -43,6 +43,7 @@ var (
 
 //Mail this defines the email
 type Mail struct {
+	Initialized             bool
 	api                     string
 	domain                  string
 	client                  http.Client
@@ -76,8 +77,9 @@ func DebugMailClient(domain, api string) Mail {
 //DefaultMailClient creates the default email client
 func DefaultMailClient(domain, api string) Mail {
 	return Mail{
-		api:    api,
-		domain: domain,
+		Initialized: true,
+		api:         api,
+		domain:      domain,
 		client: http.Client{
 			Timeout:       httpTimeout,
 			CheckRedirect: redirectPolicyFunc,
